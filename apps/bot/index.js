@@ -20,93 +20,9 @@ const client = new Client({
   ],
 });
 
-app.get("/", (req, res) => {
-  res.send("TOX Bot API Online");
-});
+require("./routes/server")(app, client);
+require("./routes/channels")(app, client);
 
-app.get("/server", async (req, res) => {
-  const guildId = req.query.guildId;
-
-  if (!guildId) {
-    return res.status(400).json({
-      error: "guildId required",
-    });
-  }
-
-  const guild = client.guilds.cache.get(guildId);
-  
-  await guild.members.fetch();
-  await guild.roles.fetch();
-
-  if (!guild) {
-    return res.status(404).json({
-      error: "Guild not found",
-    });
-  }
-
-  await guild.members.fetch();
-
-  const textChannels = guild.channels.cache.filter(
-  c => c.type === 0
-).size;
-
-const voiceChannels = guild.channels.cache.filter(
-  c => c.type === 2
-).size;
-
-const categories = guild.channels.cache.filter(
-  c => c.type === 4
-).size;
-
-const ping = Math.round(client.ws.ping);
-
-res.json({
-  guildId,
-
-  members: guild.memberCount,
-
-  roles: guild.roles.cache.size,
-
-  channels: guild.channels.cache.size,
-
-  textChannels,
-
-  voiceChannels,
-
-  categories,
-
-  ping,
-
-  botStatus: "Online",
-});
-
-});
-
-app.get("/channels", async (req, res) => {
-  const guildId = req.query.guildId;
-
-  if (!guildId) {
-    return res.status(400).json({ error: "guildId required" });
-  }
-
-  const guild = client.guilds.cache.get(guildId);
-
-  if (!guild) {
-    return res.status(404).json({ error: "Guild not found" });
-  }
-
-  const channels = guild.channels.cache
-  .sort((a, b) => a.rawPosition - b.rawPosition)
-  .map((channel) => ({
-    id: channel.id,
-    name: channel.name,
-    type: channel.type,
-    position: channel.rawPosition,
-    parentId: channel.parentId,
-  }));
-
-  res.json({ guildId, channels });
-});
 
 app.post("/channels/create", async (req, res) => {
   const { guildId, name, type, parentId } = req.body;

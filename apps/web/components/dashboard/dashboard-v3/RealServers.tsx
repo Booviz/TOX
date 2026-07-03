@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Server, ShieldCheck } from "lucide-react";
 import { Card } from "./components/Card";
+import Link from "next/link";
 
 type Guild = {
   id: string;
@@ -93,7 +94,19 @@ export default function RealServers() {
                 </span>
               </div>
 
-              <button>Manage</button>
+              <Link
+  href={`/dashboard/${guild.id}`}
+  style={{
+    background: "#7c3aed",
+    color: "#fff",
+    padding: "10px 16px",
+    borderRadius: "10px",
+    textDecoration: "none",
+    fontWeight: "700",
+  }}
+>
+  Manage
+</Link>
             </div>
           ))}
         </div>
