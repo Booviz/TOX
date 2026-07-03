@@ -1,0 +1,81 @@
+.server-dashboard {
+  min-height: 100vh;
+  background: #09090b;
+  color: #fff;
+  padding: 60px;
+}
+
+.server-dashboard-back {
+  color: #a78bfa;
+  text-decoration: none;
+  font-weight: 800;
+}
+
+.server-dashboard-header {
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.server-dashboard-icon {
+  width: 96px;
+  height: 96px;
+  border-radius: 26px;
+  object-fit: cover;
+}
+
+.server-dashboard-placeholder {
+  width: 96px;
+  height: 96px;
+  border-radius: 26px;
+  background: #25143d;
+}
+
+.server-dashboard-title-small {
+  color: #a78bfa;
+  font-weight: 800;
+}
+
+.server-dashboard-title {
+  font-size: 44px;
+  margin-top: 8px;
+}
+
+.server-dashboard-id {
+  color: #8b8b95;
+  margin-top: 8px;
+}
+
+.server-stats {
+  margin-top: 42px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.server-stat-card {
+  padding: 24px;
+  border-radius: 22px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+}
+
+.server-stat-card p {
+  color: #8b8b95;
+  margin-bottom: 12px;
+}
+
+.server-stat-card h3 {
+  font-size: 28px;
+}
+
+.server-dashboard-shell {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.server-dashboard-content {
+  flex: 1;
+}
