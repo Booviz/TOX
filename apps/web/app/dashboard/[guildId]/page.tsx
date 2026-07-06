@@ -35,8 +35,15 @@ export default async function ServerDashboardPage({
     cache: "no-store",
   });
 
-  const guilds: Guild[] = await response.json();
-  const guild = guilds.find((item) => item.id === guildId);
+  const data = await response.json();
+
+if (!response.ok || !Array.isArray(data)) {
+  console.log("Discord guilds error:", data);
+  redirect("/api/auth/signin");
+}
+
+const guilds: Guild[] = data;
+const guild = guilds.find((item) => item.id === guildId);
 
   if (!guild) {
     redirect("/servers");
