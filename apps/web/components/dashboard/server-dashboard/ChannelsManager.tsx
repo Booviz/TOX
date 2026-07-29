@@ -4,9 +4,17 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 
+type Channel = {
+  id: string;
+  name: string;
+  type: number;
+  position: number;
+  parentId: string | null;
+};
+
 type Props = {
   guildId: string;
-  channels: any[];
+  channels: Channel[];
 };
 
 const FILTERS = [
@@ -16,8 +24,7 @@ const FILTERS = [
   { label: "Categories", value: "4" },
   { label: "Announcement", value: "5" },
   { label: "Stage", value: "13" },
-  { label: "Forum", value: "15" },
-];
+  { label: "Forum", value: "15" },];
 
 function getChannelMeta(type: number) {
   switch (type) {

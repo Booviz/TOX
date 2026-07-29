@@ -1,0 +1,365 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --font-sans: var(--font-inter), 'Inter Fallback', ui-sans-serif, system-ui, sans-serif;
+  --font-arabic: var(--font-arabic), 'Noto Sans Arabic', ui-sans-serif, sans-serif;
+  --font-mono: var(--font-mono), ui-monospace, monospace;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --radius: 0.75rem;
+
+  /* TOX dark futuristic theme */
+  --background: #070b14;
+  --foreground: #e6e8ee;
+
+  --card: #0c1220;
+  --card-foreground: #e6e8ee;
+
+  --popover: #0e1524;
+  --popover-foreground: #e6e8ee;
+
+  --primary: #7c3aed;
+  --primary-foreground: #ffffff;
+
+  --secondary: #151d30;
+  --secondary-foreground: #cbd2e0;
+
+  --muted: #111827;
+  --muted-foreground: #8a93a6;
+
+  --accent: #1a2237;
+  --accent-foreground: #e6e8ee;
+
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+
+  --success: #22c55e;
+  --success-foreground: #04140a;
+
+  --warning: #f59e0b;
+  --warning-foreground: #1a1203;
+
+  --info: #06b6d4;
+  --info-foreground: #02121a;
+
+  --border: rgba(255, 255, 255, 0.08);
+  --input: rgba(255, 255, 255, 0.1);
+  --ring: #7c3aed;
+
+  --chart-1: #7c3aed;
+  --chart-2: #06b6d4;
+  --chart-3: #22c55e;
+  --chart-4: #f59e0b;
+  --chart-5: #ec4899;
+
+  --sidebar: #090e1a;
+  --sidebar-foreground: #b7bece;
+  --sidebar-primary: #7c3aed;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #151d30;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: rgba(255, 255, 255, 0.06);
+  --sidebar-ring: #7c3aed;
+}
+
+/* Force dark futuristic base */
+html {
+  color-scheme: dark;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: 'rlig' 1, 'calt' 1;
+  }
+  html[dir='rtl'] body {
+    font-family: var(--font-arabic);
+  }
+}
+
+@utility glow-primary {
+  box-shadow: 0 0 0 1px rgba(124, 58, 237, 0.25), 0 8px 40px -12px rgba(124, 58, 237, 0.45);
+}
+
+/* thin scrollbars */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.12) transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+}
+
+/* =========================================================
+   TOX Professional Form Controls
+   Applied to ticket-input and reusable tox form classes
+========================================================= */
+
+.ticket-input,
+.tox-input,
+.tox-select,
+.tox-textarea {
+  width: 100%;
+  min-height: 48px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.875rem;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.035),
+      rgba(255, 255, 255, 0.02)
+    );
+  color: var(--foreground);
+  padding: 0.75rem 0.95rem;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  outline: none;
+  transition:
+    border-color 160ms ease,
+    background-color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.ticket-input:hover,
+.tox-input:hover,
+.tox-select:hover,
+.tox-textarea:hover {
+  border-color: rgba(124, 58, 237, 0.45);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(124, 58, 237, 0.055),
+      rgba(255, 255, 255, 0.025)
+    );
+}
+
+.ticket-input:focus,
+.ticket-input:focus-visible,
+.tox-input:focus,
+.tox-input:focus-visible,
+.tox-select:focus,
+.tox-select:focus-visible,
+.tox-textarea:focus,
+.tox-textarea:focus-visible {
+  border-color: #8b5cf6;
+  background: #101728;
+  box-shadow:
+    0 0 0 3px rgba(124, 58, 237, 0.16),
+    0 10px 30px -16px rgba(124, 58, 237, 0.65);
+}
+
+.ticket-input::placeholder,
+.tox-input::placeholder,
+.tox-textarea::placeholder {
+  color: #6f788b;
+  opacity: 1;
+}
+
+.ticket-input:disabled,
+.tox-input:disabled,
+.tox-select:disabled,
+.tox-textarea:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+textarea.ticket-input,
+.tox-textarea {
+  min-height: 150px;
+  resize: vertical;
+  padding-top: 0.9rem;
+  padding-bottom: 0.9rem;
+}
+
+select.ticket-input,
+.tox-select {
+  cursor: pointer;
+  appearance: none;
+  padding-right: 2.75rem;
+  background-image:
+    linear-gradient(
+      45deg,
+      transparent 50%,
+      #9ca3af 50%
+    ),
+    linear-gradient(
+      135deg,
+      #9ca3af 50%,
+      transparent 50%
+    );
+  background-position:
+    calc(100% - 18px) calc(50% - 2px),
+    calc(100% - 13px) calc(50% - 2px);
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+}
+
+select.ticket-input option,
+.tox-select option {
+  background: #0e1524;
+  color: #e6e8ee;
+}
+
+input[type='color'].ticket-input,
+input[type='color'].tox-input {
+  min-height: 48px;
+  padding: 0.3rem;
+  cursor: pointer;
+}
+
+input[type='number'].ticket-input::-webkit-inner-spin-button,
+input[type='number'].ticket-input::-webkit-outer-spin-button,
+input[type='number'].tox-input::-webkit-inner-spin-button,
+input[type='number'].tox-input::-webkit-outer-spin-button {
+  opacity: 0.55;
+}
+
+.tox-field {
+  display: block;
+}
+
+.tox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.45rem;
+  color: #dfe3ee;
+  font-size: 0.8125rem;
+  font-weight: 650;
+}
+
+.tox-description {
+  display: block;
+  margin-top: 0.35rem;
+  color: var(--muted-foreground);
+  font-size: 0.72rem;
+  line-height: 1.5;
+}
+
+.tox-field-hint {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 0.45rem;
+  color: #7f8797;
+  font-size: 0.68rem;
+}
+
+.tox-input-shell {
+  position: relative;
+}
+
+.tox-input-shell > svg:first-child {
+  position: absolute;
+  left: 0.9rem;
+  top: 50%;
+  width: 1rem;
+  height: 1rem;
+  transform: translateY(-50%);
+  color: var(--muted-foreground);
+  pointer-events: none;
+}
+
+.tox-input-shell > svg:first-child + .ticket-input,
+.tox-input-shell > svg:first-child + .tox-input,
+.tox-input-shell > svg:first-child + .tox-select {
+  padding-left: 2.65rem;
+}
+
+.tox-form-section {
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.018),
+      rgba(255, 255, 255, 0.008)
+    );
+  padding: 1.25rem;
+}
+
+.tox-form-section:hover {
+  border-color: rgba(124, 58, 237, 0.16);
+}
+
+html[dir='rtl'] select.ticket-input,
+html[dir='rtl'] .tox-select {
+  padding-right: 0.95rem;
+  padding-left: 2.75rem;
+  background-position:
+    18px calc(50% - 2px),
+    13px calc(50% - 2px);
+}
+
+html[dir='rtl'] .tox-input-shell > svg:first-child {
+  left: auto;
+  right: 0.9rem;
+}
+
+html[dir='rtl'] .tox-input-shell > svg:first-child + .ticket-input,
+html[dir='rtl'] .tox-input-shell > svg:first-child + .tox-input,
+html[dir='rtl'] .tox-input-shell > svg:first-child + .tox-select {
+  padding-left: 0.95rem;
+  padding-right: 2.65rem;
+}
