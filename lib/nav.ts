@@ -106,14 +106,14 @@ export function buildNav(guildId: string): NavGroup[] {
       labelKey: "nav.safety",
       items: [
         {
+          labelKey: "nav.protection",
+          href: `${base}/security`,
+          icon: Shield,
+        },
+        {
           labelKey: "nav.moderation",
           href: `${base}/moderation`,
           icon: Gavel,
-        },
-        {
-          labelKey: "nav.automod",
-          href: `${base}/automod`,
-          icon: ShieldAlert,
         },
         {
           labelKey: "nav.logs",
